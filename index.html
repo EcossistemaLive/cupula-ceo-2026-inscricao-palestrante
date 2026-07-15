@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cúpula CEO 2026 — Dados do Palestrante | ViDi</title>
+  <meta name="description" content="Formulário oficial de coleta de dados para palestrantes da Cúpula CEO 2026, evento presencial de imersão C-Level organizado pela ViDi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Particles background -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <img src="vidi-logo.png" alt="ViDi CEO Logo" id="logo-img" />
+      </div>
+      <div class="header-tag">
+        <span class="tag-badge">Cúpula CEO 2026</span>
+        <span class="tag-date">📅 17 de Setembro · Brasília – DF</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Formulário Exclusivo para Palestrantes
+      </div>
+      <h1 class="hero-title">
+        Bem-vindo à <span class="gradient-text">Cúpula CEO 2026</span>
+      </h1>
+      <p class="hero-subtitle">
+        Preencha as informações abaixo para confirmar sua participação e garantir uma experiência impecável no maior evento de imersão C-Level do Brasil.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-icon">👤</div>
+          <div class="stat-info">
+            <span class="stat-num">300+</span>
+            <span class="stat-label">Líderes C-Level</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📍</div>
+          <div class="stat-info">
+            <span class="stat-num">Royal Tulip</span>
+            <span class="stat-label">Brasília – DF</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-info">
+            <span class="stat-num">Set/2026</span>
+            <span class="stat-label">17 de Setembro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Form -->
+  <main class="form-container">
+
+    <!-- Progress bar -->
+    <div class="progress-wrapper">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <span class="progress-label" id="progressLabel">0% concluído</span>
+    </div>
+
+    <form id="speakerForm" novalidate>
+
+      <!-- ===== SEÇÃO 1: Tipo de Pessoa ===== -->
+      <div class="form-section" data-section="1">
+        <div class="section-header">
+          <div class="section-number">01</div>
+          <div>
+            <h2 class="section-title">Tipo de Participação</h2>
+            <p class="section-desc">Informe se você irá participar como pessoa física ou jurídica.</p>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label required">Você é:</label>
+          <div class="radio-cards">
+            <label class="radio-card" id="radio-pf-label">
+              <input type="radio" name="tipoPessoa" id="tipoPF" value="Pessoa Física" required />
+              <div class="radio-card-inner">
+                <span class="radio-icon">👤</span>
+                <span class="radio-title">Pessoa Física</span>
+                <span class="radio-desc">Palestrante individual</span>
+              </div>
+            </label>
+            <label class="radio-card" id="radio-pj-label">
+              <input type="radio" name="tipoPessoa" id="tipoPJ" value="Pessoa Jurídica" />
+              <div class="radio-card-inner">
+                <span class="radio-icon">🏢</span>
+                <span class="radio-title">Pessoa Jurídica</span>
+                <span class="radio-desc">Empresa ou instituição</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SEÇÃO 2: Dados Pessoais PF ===== -->
+      <div class="form-section" id="secaoPF" data-section="2">
+        <div class="section-header">
+          <div class="section-number">02</div>
+          <div>
+            <h2 class="section-title">Dados do Palestrante — Pessoa Física</h2>
+            <p class="section-desc">Informações que constarão no Termo de Participação.</p>
+          </div>
+        </div>
+
+        <div class="fields-grid">
+          <div class="field-wrap full-width">
+            <label class="field-label required" for="nomeCompleto">Nome Completo</label>
+            <input type="text" id="nomeCompleto" name="nomeCompleto" class="field-input" placeholder="Seu nome completo conforme documento oficial" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label required" for="cpf">CPF</label>
+            <input type="text" id="cpf" name="cpf" class="field-input" placeholder="000.000.000-00" maxlength="14" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label required" for="rg">RG</label>
+            <input type="text" id="rg" name="rg" class="field-input" placeholder="00.000.000-0" />
+          </div>
+          <div class="field-wrap full-width">
+            <label class="field-label required" for="enderecoPF">Endereço Completo</label>
+            <input type="text" id="enderecoPF" name="enderecoPF" class="field-input" placeholder="Rua, número, bairro, cidade – UF, CEP" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label required" for="emailPF">E-mail</label>
+            <input type="email" id="emailPF" name="emailPF" class="field-input" placeholder="seu@email.com" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label required" for="telefonePF">Telefone / WhatsApp</label>
+            <input type="tel" id="telefonePF" name="telefonePF" class="field-input" placeholder="(00) 90000-0000" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SEÇÃO 2B: Dados PJ ===== -->
+      <div class="form-section hidden" id="secaoPJ" data-section="2b">
+        <div class="section-header">
+          <div class="section-number">02</div>
+          <div>
+            <h2 class="section-title">Dados do Palestrante — Pessoa Jurídica</h2>
+            <p class="section-desc">Informações da empresa que constarão no Termo de Participação.</p>
+          </div>
+        </div>
+
+        <div class="fields-grid">
+          <div class="field-wrap full-width">
+            <label class="field-label" for="razaoSocial">Razão Social</label>
+            <input type="text" id="razaoSocial" name="razaoSocial" class="field-input" placeholder="Nome empresarial completo" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="cnpj">CNPJ</label>
+            <input type="text" id="cnpj" name="cnpj" class="field-input" placeholder="00.000.000/0000-00" maxlength="18" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="representante">Nome do Representante</label>
+            <input type="text" id="representante" name="representante" class="field-input" placeholder="Nome completo do representante legal" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="cpfRepresentante">CPF do Representante</label>
+            <input type="text" id="cpfRepresentante" name="cpfRepresentante" class="field-input" placeholder="000.000.000-00" maxlength="14" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="emailPJ">E-mail</label>
+            <input type="email" id="emailPJ" name="emailPJ" class="field-input" placeholder="contato@empresa.com" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SEÇÃO 3: Dados da Palestra ===== -->
+      <div class="form-section" data-section="3">
+        <div class="section-header">
+          <div class="section-number">03</div>
+          <div>
+            <h2 class="section-title">Dados da Participação</h2>
+            <p class="section-desc">Detalhes sobre o conteúdo e formato da sua apresentação.</p>
+          </div>
+        </div>
+
+        <div class="fields-grid">
+          <div class="field-wrap full-width">
+            <label class="field-label required" for="temaPainel">Tema / Painel</label>
+            <input type="text" id="temaPainel" name="temaPainel" class="field-input" placeholder="Título ou tema da sua palestra/painel" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label required" for="formato">Formato</label>
+            <div class="select-wrapper">
+              <select id="formato" name="formato" class="field-input field-select">
+                <option value="" disabled selected>Selecione o formato</option>
+                <option value="Palestra solo">🎤 Palestra solo</option>
+                <option value="Painel">💬 Painel</option>
+                <option value="Mesa redonda">🔄 Mesa redonda</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-wrap">
+            <label class="field-label required" for="duracao">Duração (em minutos)</label>
+            <input type="number" id="duracao" name="duracao" class="field-input" placeholder="Ex: 45" min="5" max="180" />
+          </div>
+          <div class="field-wrap">
+            <label class="field-label" for="horarioPrevisto">Horário Previsto</label>
+            <input type="time" id="horarioPrevisto" name="horarioPrevisto" class="field-input" />
+            <span class="field-hint">⚠️ Sujeito a ajuste operacional</span>
+          </div>
+          <div class="field-wrap">
+            <label class="field-label required" for="contatoEvento">Contato no Evento (celular)</label>
+            <input type="tel" id="contatoEvento" name="contatoEvento" class="field-input" placeholder="Número de celular para o dia do evento" />
+          </div>
+          <div class="field-wrap full-width">
+            <label class="field-label" for="necessidades">Necessidades Especiais ou Observações</label>
+            <textarea id="necessidades" name="necessidades" class="field-input field-textarea" placeholder="Informe qualquer necessidade especial de acessibilidade, dieta, recursos técnicos adicionais etc." rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SEÇÃO 4: Recursos Técnicos ===== -->
+      <div class="form-section" data-section="4">
+        <div class="section-header">
+          <div class="section-number">04</div>
+          <div>
+            <h2 class="section-title">Recursos Solicitados</h2>
+            <p class="section-desc">Marque os recursos que você precisará para sua apresentação.</p>
+          </div>
+        </div>
+
+        <div class="checkbox-grid">
+          <label class="checkbox-card">
+            <input type="checkbox" name="recursos" id="rec-projetor" value="Projetor" />
+            <div class="checkbox-card-inner">
+              <span class="checkbox-icon">📽️</span>
+              <span>Projetor</span>
+            </div>
+          </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="recursos" id="rec-microfone" value="Microfone" />
+            <div class="checkbox-card-inner">
+              <span class="checkbox-icon">🎙️</span>
+              <span>Microfone</span>
+            </div>
+          </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="recursos" id="rec-mesa" value="Mesa" />
+            <div class="checkbox-card-inner">
+              <span class="checkbox-icon">🪑</span>
+              <span>Mesa</span>
+            </div>
+          </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="recursos" id="rec-flipchart" value="Flipchart" />
+            <div class="checkbox-card-inner">
+              <span class="checkbox-icon">📋</span>
+              <span>Flipchart</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="field-wrap" style="margin-top:1.25rem">
+          <label class="field-label" for="recursosOutros">Outros recursos necessários</label>
+          <input type="text" id="recursosOutros" name="recursosOutros" class="field-input" placeholder="Descreva outros recursos que precisará..." />
+        </div>
+      </div>
+
+      <!-- ===== SEÇÃO 5: Materiais de Divulgação ===== -->
+      <div class="form-section" data-section="5">
+        <div class="section-header">
+          <div class="section-number">05</div>
+          <div>
+            <h2 class="section-title">Materiais de Divulgação</h2>
+            <p class="section-desc">Informe como podemos receber seus materiais (a entrega deve acontecer com 15 dias de antecedência).</p>
+          </div>
+        </div>
+
+        <div class="info-banner">
+          <span class="info-icon">📌</span>
+          <div>
+            <strong>Materiais necessários:</strong>
+            <ul class="info-list">
+              <li>Foto profissional em alta resolução (mín. 1920×1080px, fundo neutro)</li>
+              <li>Mini-bio de até 150 palavras</li>
+              <li>Logotipo da empresa em .png com fundo transparente (se PJ)</li>
+              <li>Apresentação em .pptx ou .pdf (quando aplicável)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fields-grid">
+          <div class="field-wrap full-width">
+            <label class="field-label required" for="linkMateriais">Link para envio dos materiais (Google Drive, Dropbox, WeTransfer etc.)</label>
+            <input type="url" id="linkMateriais" name="linkMateriais" class="field-input" placeholder="https://drive.google.com/..." />
+          </div>
+          <div class="field-wrap full-width">
+            <label class="field-label required" for="miniBio">Mini-bio (até 150 palavras)</label>
+            <textarea id="miniBio" name="miniBio" class="field-input field-textarea" placeholder="Escreva sua mini-bio aqui..." rows="5" maxlength="1200"></textarea>
+            <span class="field-hint" id="bioCount">0 / 150 palavras</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SEÇÃO 6: Confirmação e LGPD ===== -->
+      <div class="form-section" data-section="6">
+        <div class="section-header">
+          <div class="section-number">06</div>
+          <div>
+            <h2 class="section-title">Confirmação e Consentimento</h2>
+            <p class="section-desc">Leia e confirme as informações antes de enviar.</p>
+          </div>
+        </div>
+
+        <div class="confirm-card">
+          <h3 class="confirm-title">📋 Resumo do seu Termo de Participação</h3>
+          <div class="confirm-grid">
+            <div class="confirm-item">
+              <span class="confirm-key">📅 Data do evento</span>
+              <span class="confirm-val">17 de Setembro de 2026 (quinta-feira)</span>
+            </div>
+            <div class="confirm-item">
+              <span class="confirm-key">🌙 Jantar (opcional)</span>
+              <span class="confirm-val">16 de Setembro de 2026 (quarta-feira)</span>
+            </div>
+            <div class="confirm-item">
+              <span class="confirm-key">📍 Local</span>
+              <span class="confirm-val">Hotel Royal Tulip, Brasília – DF</span>
+            </div>
+            <div class="confirm-item">
+              <span class="confirm-key">💼 Participação</span>
+              <span class="confirm-val">Não remunerada (permuta de visibilidade)</span>
+            </div>
+            <div class="confirm-item">
+              <span class="confirm-key">🏨 Hospedagem</span>
+              <span class="confirm-val">Custeada pela organização</span>
+            </div>
+            <div class="confirm-item">
+              <span class="confirm-key">✈️ Transporte aéreo</span>
+              <span class="confirm-val">Custeado pela organização</span>
+            </div>
+            <div class="confirm-item">
+              <span class="confirm-key">🚐 Traslado local</span>
+              <span class="confirm-val">Custeado pela organização</span>
+            </div>
+            <div class="confirm-item">
+              <span class="confirm-key">🍽️ Alimentação</span>
+              <span class="confirm-val">Custeada pela organização</span>
+            </div>
+            <div class="confirm-item">
+              <span class="confirm-key">🎟️ VIP Pass</span>
+              <span class="confirm-val">01 ingresso VIP incluído</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="checkbox-terms">
+          <label class="terms-check" for="aceitaTermos">
+            <input type="checkbox" id="aceitaTermos" name="aceitaTermos" required />
+            <span class="terms-checkmark"></span>
+            <span class="terms-text">
+              Li e confirmo os dados apresentados acima. Estou ciente de que o <strong>Termo de Participação e Autorização de Uso de Imagem</strong> será enviado separadamente para assinatura digital.
+            </span>
+          </label>
+        </div>
+
+        <div class="checkbox-terms">
+          <label class="terms-check" for="aceitaLGPD">
+            <input type="checkbox" id="aceitaLGPD" name="aceitaLGPD" required />
+            <span class="terms-checkmark"></span>
+            <span class="terms-text">
+              Autorizo o uso dos meus dados pessoais exclusivamente para as finalidades previstas no Termo de Participação, em conformidade com a <strong>LGPD (Lei 13.709/2018)</strong>. Sei que posso solicitar acesso, correção ou exclusão a qualquer momento pelo e-mail <a href="mailto:contato@vidiceo.com.br">contato@vidiceo.com.br</a>.
+            </span>
+          </label>
+        </div>
+
+        <div class="checkbox-terms">
+          <label class="terms-check" for="aceitaImagem">
+            <input type="checkbox" id="aceitaImagem" name="aceitaImagem" required />
+            <span class="terms-checkmark"></span>
+            <span class="terms-text">
+              Estou ciente de que, ao participar do evento, autorizo o uso da minha imagem, voz e nome para fins de divulgação do evento pela ViDi, conforme especificado no Termo de Participação. <strong>Nenhum uso para IA generativa, deepfake ou clonagem é permitido sem autorização expressa adicional.</strong>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="submit-wrapper">
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <span class="btn-text">Confirmar Participação</span>
+          <span class="btn-icon">🚀</span>
+          <div class="btn-loading hidden" id="btnLoading">
+            <div class="spinner"></div>
+            Enviando...
+          </div>
+        </button>
+        <p class="submit-hint">Seus dados serão enviados com segurança. Um resumo será enviado para o seu e-mail.</p>
+      </div>
+
+    </form>
+
+    <!-- Success Message -->
+    <div class="success-screen hidden" id="successScreen">
+      <div class="success-icon">✅</div>
+      <h2 class="success-title">Inscrição confirmada!</h2>
+      <p class="success-msg">
+        Seus dados foram registrados com sucesso. Nossa equipe entrará em contato em breve para os próximos passos e envio do Termo para assinatura digital.
+      </p>
+      <div class="success-info">
+        <span>📧 <a href="mailto:contato@vidiceo.com.br">contato@vidiceo.com.br</a></span>
+        <span>📞 (62) 98400-2840</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="vidi-logo.png" alt="ViDi CEO" class="footer-logo" />
+        <p class="footer-tagline">Transformando líderes. Inspirando o Brasil.</p>
+      </div>
+      <div class="footer-contact">
+        <h3 class="footer-heading">Contato</h3>
+        <a href="mailto:contato@vidiceo.com.br" class="footer-link">📧 contato@vidiceo.com.br</a>
+        <a href="tel:+556298400-2840" class="footer-link">📞 (62) 98400-2840</a>
+        <a href="https://www.instagram.com/vidiceo" target="_blank" rel="noopener" class="footer-link">📸 @vidiceo</a>
+      </div>
+      <div class="footer-event">
+        <h3 class="footer-heading">Cúpula CEO 2026</h3>
+        <p class="footer-text">📅 17 de Setembro de 2026</p>
+        <p class="footer-text">📍 Hotel Royal Tulip · Brasília – DF</p>
+        <p class="footer-text">👤 250–300 participantes C-Level</p>
+      </div>
+      <div class="footer-legal">
+        <p class="footer-legal-text">Organizado por <strong>Catalyst Educação Ltda</strong></p>
+        <p class="footer-legal-text">CNPJ 64.465.973/0001-89</p>
+        <p class="footer-legal-text">Av. PL3, nº 960, Quadra H4, Lote 01/03, Sala 2508, Edifício T, Lozandes, Goiânia – GO, CEP 74.884-115</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ViDi CEO · Todos os direitos reservados · Dados protegidos pela LGPD (Lei 13.709/2018)</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
