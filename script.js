@@ -4,8 +4,6 @@
    ======================================== */
 
 // ===== CONFIG =====
-// Este endpoint é gerado pelo Google Apps Script.
-// Após publicar o script, cole a URL do Web App aqui:
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxASD_PLACEHOLDER_SUBSTITUA_PELA_URL_REAL/exec';
 
 // ===== PARTICLES =====
@@ -59,7 +57,6 @@ function setupTipoPessoa() {
       if (radio.value === 'Pessoa Física') {
         secaoPF.classList.remove('hidden');
         secaoPJ.classList.add('hidden');
-        // Required on PF fields
         setRequired('#secaoPF', true);
         setRequired('#secaoPJ', false);
       } else {
@@ -72,7 +69,6 @@ function setupTipoPessoa() {
     });
   });
 
-  // Default: show PF
   document.getElementById('tipoPF').checked = true;
   document.getElementById('tipoPF').dispatchEvent(new Event('change'));
 }
@@ -82,18 +78,17 @@ function setRequired(sectionSelector, required) {
   if (!section) return;
   section.querySelectorAll('.field-input').forEach(el => {
     if (required) {
-      if (el.dataset.wasRequired !== 'false') el.setAttribute('required', '');
+      el.setAttribute('required', '');
     } else {
       el.removeAttribute('required');
     }
   });
 }
 
-// ===== CPF MASK =====
+// ===== MASKS =====
 function maskCPF(input) {
   input.addEventListener('input', () => {
-    let v = input.value.replace(/\D/g, '');
-    v = v.substring(0, 11);
+    let v = input.value.replace(/\D/g, '').substring(0, 11);
     if (v.length > 9) v = v.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
     else if (v.length > 6) v = v.replace(/(\d{3})(\d{3})(\d+)/, '$1.$2.$3');
     else if (v.length > 3) v = v.replace(/(\d{3})(\d+)/, '$1.$2');
@@ -101,11 +96,9 @@ function maskCPF(input) {
   });
 }
 
-// ===== CNPJ MASK =====
 function maskCNPJ(input) {
   input.addEventListener('input', () => {
-    let v = input.value.replace(/\D/g, '');
-    v = v.substring(0, 14);
+    let v = input.value.replace(/\D/g, '').substring(0, 14);
     if (v.length > 12) v = v.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
     else if (v.length > 8) v = v.replace(/(\d{2})(\d{3})(\d{3})(\d+)/, '$1.$2.$3/$4');
     else if (v.length > 5) v = v.replace(/(\d{2})(\d{3})(\d+)/, '$1.$2.$3');
@@ -114,11 +107,9 @@ function maskCNPJ(input) {
   });
 }
 
-// ===== PHONE MASK =====
 function maskPhone(input) {
   input.addEventListener('input', () => {
-    let v = input.value.replace(/\D/g, '');
-    v = v.substring(0, 11);
+    let v = input.value.replace(/\D/g, '').substring(0, 11);
     if (v.length > 10) v = v.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     else if (v.length > 6) v = v.replace(/(\d{2})(\d{4})(\d+)/, '($1) $2-$3');
     else if (v.length > 2) v = v.replace(/(\d{2})(\d+)/, '($1) $2');
@@ -126,15 +117,16 @@ function maskPhone(input) {
   });
 }
 
-// ===== BIO COUNTER =====
+// ===== BIO COUNTER (100 palavras) =====
 function setupBioCounter() {
   const bio = document.getElementById('miniBio');
   const counter = document.getElementById('bioCount');
+  if (!bio || !counter) return;
   bio.addEventListener('input', () => {
     const words = bio.value.trim().split(/\s+/).filter(w => w.length > 0);
     const count = words.length;
-    counter.textContent = `${count} / 150 palavras`;
-    counter.style.color = count > 150 ? '#f87171' : 'var(--text-muted)';
+    counter.textContent = `${count} / 100 palavras`;
+    counter.style.color = count > 100 ? '#e74c3c' : 'var(--text-muted)';
   });
 }
 
@@ -142,43 +134,50 @@ function setupBioCounter() {
 function collectData() {
   const form = document.getElementById('speakerForm');
   const tipo = document.querySelector('[name="tipoPessoa"]:checked')?.value || '';
-  const recursos = [...form.querySelectorAll('[name="recursos"]:checked')].map(c => c.value);
-  const recursosOutros = document.getElementById('recursosOutros').value;
-  const todosRecursos = recursosOutros ? [...recursos, 'Outros: ' + recursosOutros] : recursos;
 
   const data = {
     timestamp: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
-    tipoPessoa: tipo,
-    // PF
-    nomeCompleto: document.getElementById('nomeCompleto').value,
-    cpf: document.getElementById('cpf').value,
-    rg: document.getElementById('rg').value,
-    enderecoPF: document.getElementById('enderecoPF').value,
-    emailPF: document.getElementById('emailPF').value,
-    telefonePF: document.getElementById('telefonePF').value,
-    // PJ
-    razaoSocial: document.getElementById('razaoSocial').value,
-    cnpj: document.getElementById('cnpj').value,
-    representante: document.getElementById('representante').value,
-    cpfRepresentante: document.getElementById('cpfRepresentante').value,
-    emailPJ: document.getElementById('emailPJ').value,
-    // Participação
-    temaPainel: document.getElementById('temaPainel').value,
-    formato: document.getElementById('formato').value,
-    duracao: document.getElementById('duracao').value,
-    horarioPrevisto: document.getElementById('horarioPrevisto').value,
-    contatoEvento: document.getElementById('contatoEvento').value,
-    cidadeOrigem: document.getElementById('cidadeOrigem').value,
-    necessidades: document.getElementById('necessidades').value,
-    // Recursos
-    recursos: todosRecursos.join(', '),
-    // Materiais
-    linkMateriais: document.getElementById('linkMateriais').value,
-    miniBio: document.getElementById('miniBio').value,
+
+    // Seção 1 — Identificação
+    nomeAnuncio:       document.getElementById('nomeAnuncio').value,
+    cargo:             document.getElementById('cargo').value,
+    empresa:           document.getElementById('empresa').value,
+    emailPF:           document.getElementById('emailPF').value,
+    telefonePF:        document.getElementById('telefonePF').value,
+    linkedin:          document.getElementById('linkedin').value,
+    instagram:         document.getElementById('instagram').value,
+    youtube:           document.getElementById('youtube').value,
+    siteProfissional:  document.getElementById('siteProfissional').value,
+
+    // Seção 2 — Termo
+    tipoPessoa:        tipo,
+    nomeCompleto:      document.getElementById('nomeCompleto').value,
+    cpf:               document.getElementById('cpf').value,
+    rg:                document.getElementById('rg').value,
+    enderecoPF:        document.getElementById('enderecoPF').value,
+    razaoSocial:       document.getElementById('razaoSocial').value,
+    cnpj:              document.getElementById('cnpj').value,
+    representante:     document.getElementById('representante').value,
+    cpfRepresentante:  document.getElementById('cpfRepresentante').value,
+
+    // Seção 3 — Conteúdo
+    temaPainel:        document.getElementById('temaPainel').value,
+    sinopse:           document.getElementById('sinopse').value,
+    miniBio:           document.getElementById('miniBio').value,
+    caseSucesso:       document.getElementById('caseSucesso').value,
+    contatoEvento:     document.getElementById('contatoEvento').value,
+    cidadeOrigem:      document.getElementById('cidadeOrigem').value,
+    necessidades:      document.getElementById('necessidades').value,
+
+    // Seção 4 — Materiais
+    linkMateriais:     document.getElementById('linkMateriais').value,
+    obsPhotos:         document.getElementById('obsPhotos').value,
+    linkVideo:         document.getElementById('linkVideo').value,
+
     // Aceites
-    aceitaTermos: document.getElementById('aceitaTermos').checked ? 'Sim' : 'Não',
-    aceitaLGPD: document.getElementById('aceitaLGPD').checked ? 'Sim' : 'Não',
-    aceitaImagem: document.getElementById('aceitaImagem').checked ? 'Sim' : 'Não',
+    aceitaTermos:      document.getElementById('aceitaTermos').checked ? 'Sim' : 'Não',
+    aceitaLGPD:        document.getElementById('aceitaLGPD').checked ? 'Sim' : 'Não',
+    aceitaImagem:      document.getElementById('aceitaImagem').checked ? 'Sim' : 'Não',
   };
 
   return data;
@@ -189,7 +188,6 @@ function validateForm() {
   const form = document.getElementById('speakerForm');
   let valid = true;
 
-  // Remove previous errors
   form.querySelectorAll('.error-msg').forEach(e => e.remove());
   form.querySelectorAll('.error').forEach(e => e.classList.remove('error'));
 
@@ -207,7 +205,6 @@ function validateForm() {
   requiredFields.forEach(field => {
     if (field.type === 'checkbox') {
       if (!field.checked) {
-        field.closest('.terms-check')?.classList.add('error');
         valid = false;
         if (!field.closest('.terms-check').querySelector('.error-msg')) {
           const err = document.createElement('p');
@@ -216,8 +213,8 @@ function validateForm() {
           field.closest('.terms-check').after(err);
         }
       }
-    } else if (field.closest('.form-section')?.classList.contains('hidden')) {
-      // skip hidden sections
+    } else if (field.closest('.hidden')) {
+      // skip hidden fields
     } else if (!field.value.trim()) {
       field.classList.add('error');
       valid = false;
@@ -238,7 +235,6 @@ async function handleSubmit(e) {
   e.preventDefault();
 
   if (!validateForm()) {
-    // Scroll to first error
     const firstError = document.querySelector('.error, .error-msg');
     if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
@@ -263,7 +259,6 @@ async function handleSubmit(e) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
-    // no-cors means we can't read response, assume success
     document.getElementById('speakerForm').classList.add('hidden');
     document.getElementById('successScreen').classList.remove('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -273,7 +268,7 @@ async function handleSubmit(e) {
     btnText.classList.remove('hidden');
     btnIcon.classList.remove('hidden');
     btnLoading.classList.add('hidden');
-    alert('Erro ao enviar. Por favor, tente novamente ou entre em contato com contato@vidiceo.com.br');
+    alert('Erro ao enviar. Por favor, tente novamente ou entre em contato: contato@vidiceo.com.br');
   }
 }
 
@@ -288,7 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
   maskPhone(document.getElementById('contatoEvento'));
   setupBioCounter();
 
-  // Progress tracking
   const allInputs = document.querySelectorAll('.field-input, [name="tipoPessoa"], [name="aceitaTermos"], [name="aceitaLGPD"], [name="aceitaImagem"]');
   allInputs.forEach(el => el.addEventListener('input', updateProgress));
   allInputs.forEach(el => el.addEventListener('change', updateProgress));
