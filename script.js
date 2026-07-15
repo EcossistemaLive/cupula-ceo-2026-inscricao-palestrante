@@ -11,7 +11,7 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxASD_PLACEHOLD
 // ===== PARTICLES =====
 function createParticles() {
   const container = document.getElementById('particles');
-  const colors = ['rgba(124,58,237,', 'rgba(59,130,246,', 'rgba(6,182,212,'];
+  const colors = ['rgba(206,167,54,', 'rgba(219,185,74,', 'rgba(168,133,32,'];
   const count = 28;
   for (let i = 0; i < count; i++) {
     const p = document.createElement('div');
