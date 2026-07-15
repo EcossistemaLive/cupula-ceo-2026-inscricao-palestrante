@@ -251,13 +251,16 @@ async function handleSubmit(e) {
   btnLoading.classList.remove('hidden');
 
   const data = collectData();
+  const formData = new URLSearchParams();
+  for (const key in data) {
+    formData.append(key, data[key]);
+  }
 
   try {
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(data),
+      body: formData,
     });
     document.getElementById('speakerForm').classList.add('hidden');
     document.getElementById('successScreen').classList.remove('hidden');

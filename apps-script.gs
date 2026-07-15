@@ -67,8 +67,13 @@ function doGet(e) {
 
 function doPost(e) {
   try {
-    const raw  = e.postData ? e.postData.contents : '{}';
-    const data = JSON.parse(raw);
+    let data = {};
+    if (e.parameter && Object.keys(e.parameter).length > 0) {
+      data = e.parameter;
+    } else {
+      const raw = e.postData ? e.postData.contents : '{}';
+      try { data = JSON.parse(raw); } catch (e) { data = {}; }
+    }
     const sheet = getOrCreateSheet();
 
     const row = [
