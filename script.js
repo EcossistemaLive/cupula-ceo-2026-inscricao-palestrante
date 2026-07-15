@@ -168,6 +168,7 @@ function collectData() {
     duracao: document.getElementById('duracao').value,
     horarioPrevisto: document.getElementById('horarioPrevisto').value,
     contatoEvento: document.getElementById('contatoEvento').value,
+    cidadeOrigem: document.getElementById('cidadeOrigem').value,
     necessidades: document.getElementById('necessidades').value,
     // Recursos
     recursos: todosRecursos.join(', '),

@@ -50,6 +50,7 @@ const HEADERS = [
   'Duração (min)',
   'Horário Previsto',
   'Contato no Evento',
+  'Cidade de Origem',
   'Necessidades Especiais',
   // Recursos
   'Recursos Solicitados',
@@ -103,6 +104,7 @@ function doPost(e) {
       data.duracao              || '',
       data.horarioPrevisto      || '',
       data.contatoEvento        || '',
+      data.cidadeOrigem         || '',
       data.necessidades         || '',
       data.recursos             || '',
       data.linkMateriais        || '',
