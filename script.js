@@ -278,7 +278,7 @@ async function handleSubmit(e) {
           data: base64
         });
       }
-      data.filesArray = JSON.stringify(filesArray);
+      data.filesArray = filesArray;
     } catch (err) {
       console.error('Erro ao ler arquivos', err);
     }

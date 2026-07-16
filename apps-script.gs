@@ -76,10 +76,17 @@ function doPost(e) {
     }
 
     let fileUrl = '';
+    // Log variable to debug what happens to files
+    let debugLog = 'Iniciou. ';
+
     if (data.filesArray && DRIVE_FOLDER_ID !== 'COLE_O_ID_DA_PASTA_AQUI') {
       try {
+        debugLog += `Drive ID set. Recebeu filesArray type: ${typeof data.filesArray}. `;
         const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
-        const files = JSON.parse(data.filesArray);
+        // Se ainda for string, converte. Se já for array (json.parse do body fez o trabalho), usa direto.
+        const files = typeof data.filesArray === 'string' ? JSON.parse(data.filesArray) : data.filesArray;
+        debugLog += `Files length: ${files.length}. `;
+        
         let urls = [];
         for (let i = 0; i < files.length; i++) {
           const f = files[i];
@@ -90,11 +97,16 @@ function doPost(e) {
           urls.push(file.getUrl());
         }
         fileUrl = urls.join('\n');
+        debugLog += 'Sucesso.';
       } catch (e) {
         console.error('Erro ao salvar arquivos no Drive:', e);
         fileUrl = 'Erro ao salvar no Drive: ' + e.message;
+        debugLog += `Erro: ${e.message}`;
       }
-    } else if (data.filesArray && DRIVE_FOLDER_ID === 'COLE_O_ID_DA_PASTA_AQUI') {
+    } else if (!data.filesArray) {
+      fileUrl = 'Nenhum arquivo recebido ou filesArray ausente.';
+      debugLog += 'data.filesArray é falso/vazio.';
+    } else {
       fileUrl = 'Faltou configurar o ID da pasta no script.';
     }
 
@@ -154,9 +166,17 @@ function getOrCreateSheet() {
   const ss    = SpreadsheetApp.openById(SPREADSHEET_ID);
   let sheet   = ss.getSheetByName(SHEET_NAME);
   if (!sheet) sheet = ss.insertSheet(SHEET_NAME);
+  
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(HEADERS);
     formatHeader(sheet);
+  } else {
+    // Atualiza cabeçalhos automaticamente se a ordem ou qtd de colunas mudar
+    const currentHeaders = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    if (currentHeaders.length !== HEADERS.length || currentHeaders[HEADERS.length - 1] !== HEADERS[HEADERS.length - 1]) {
+      sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
+      formatHeader(sheet);
+    }
   }
   return sheet;
 }
