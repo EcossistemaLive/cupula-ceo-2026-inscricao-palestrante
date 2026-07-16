@@ -16,7 +16,7 @@
  */
 
 const SPREADSHEET_ID   = '1nmsBojofevsIFhS0OienuAZDo89IpjU3MqzW94K9uHM';
-const DRIVE_FOLDER_ID  = 'COLE_O_ID_DA_PASTA_AQUI'; // <-- ATENÇÃO: COLOQUE O ID DA PASTA AQUI
+const DRIVE_FOLDER_ID  = '1TgIcLdIqFK8AwJFJBXxOEALT1RUtHz43';
 const SHEET_NAME       = 'Respostas';
 const NOTIFY_EMAIL     = 'contato@vidiceo.com.br';
 
