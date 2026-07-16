@@ -172,6 +172,11 @@ function collectData() {
     // Seção 4 — Materiais
     obsPhotos:         document.getElementById('obsPhotos')?.value || '',
 
+    // Logística
+    hospedagem:        document.getElementById('hospedagem')?.value || '',
+    traslado:          document.getElementById('traslado')?.value || '',
+    transporteAereo:   document.getElementById('transporteAereo')?.value || '',
+
     // Aceites
     aceitaTermos:      document.getElementById('aceitaTermos').checked ? 'Sim' : 'Não',
     aceitaLGPD:        document.getElementById('aceitaLGPD').checked ? 'Sim' : 'Não',

@@ -316,18 +316,6 @@
               <span class="confirm-val">Não remunerada</span>
             </div>
             <div class="confirm-item">
-              <span class="confirm-key">🏨 Hospedagem</span>
-              <span class="confirm-val">Custeada pela organização</span>
-            </div>
-            <div class="confirm-item">
-              <span class="confirm-key">✈️ Transporte aéreo</span>
-              <span class="confirm-val">Custeado pela organização</span>
-            </div>
-            <div class="confirm-item">
-              <span class="confirm-key">🚐 Traslado local</span>
-              <span class="confirm-val">Custeado pela organização</span>
-            </div>
-            <div class="confirm-item">
               <span class="confirm-key">🍽️ Alimentação</span>
               <span class="confirm-val">Custeada pela organização durante o evento</span>
             </div>
@@ -339,6 +327,34 @@
               <span class="confirm-key">📁 Prazo para materiais</span>
               <span class="confirm-val">15 de agosto de 2026</span>
             </div>
+          </div>
+        </div>
+
+        <div class="fields-grid" style="margin-bottom: 2rem; margin-top: 2rem;">
+          <h3 class="section-title" style="grid-column: 1 / -1; margin-bottom: 1rem;">Logística</h3>
+          <div class="field-wrap full-width">
+            <label class="field-label required" for="hospedagem">Hospedagem</label>
+            <select id="hospedagem" name="hospedagem" class="field-input" required>
+              <option value="">Selecione...</option>
+              <option value="Custeada pela organização (apenas palestrante)">Custeada pela organização (apenas palestrante)</option>
+              <option value="Não requer hospedagem">Não requer hospedagem</option>
+            </select>
+          </div>
+          <div class="field-wrap full-width">
+            <label class="field-label required" for="traslado">Traslado</label>
+            <select id="traslado" name="traslado" class="field-input" required>
+              <option value="">Selecione...</option>
+              <option value="Custeada pela organização">Custeada pela organização</option>
+              <option value="Não requer">Não requer</option>
+            </select>
+          </div>
+          <div class="field-wrap full-width">
+            <label class="field-label required" for="transporteAereo">Transporte Aéreo</label>
+            <select id="transporteAereo" name="transporteAereo" class="field-input" required>
+              <option value="">Selecione...</option>
+              <option value="Custeada pela organização (apenas palestrante)">Custeada pela organização (apenas palestrante)</option>
+              <option value="Não requer transporte aéreo">Não requer transporte aéreo</option>
+            </select>
           </div>
         </div>
 
