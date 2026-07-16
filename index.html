@@ -203,15 +203,6 @@
             <div class="field-wrap">
               <label class="field-label" for="cpfRepresentante">CPF do Representante</label>
               <input type="text" id="cpfRepresentante" name="cpfRepresentante" class="field-input" placeholder="000.000.000-00" maxlength="14" />
-            </div>
-          </div>
-        </div>
-
-        <!-- File Upload for Hotel Check-in -->
-        <div class="fields-grid" style="margin-top: 1rem;">
-          <div class="field-wrap full-width">
-            <label class="field-label required" for="documentoId">Anexo de Documento (RG, CNH ou Passaporte) <span class="optional-tag">para facilitar o check-in no hotel</span></label>
-            <input type="file" id="documentoId" name="documentoId" class="field-input" accept=".pdf,image/png,image/jpeg" style="padding: 0.5rem;" required />
           </div>
         </div>
       </div>
@@ -236,9 +227,9 @@
             <textarea id="sinopse" name="sinopse" class="field-input field-textarea" placeholder="Descreva em até 3 frases o que o público vai aprender ou vivenciar na sua palestra..." rows="4" required></textarea>
           </div>
           <div class="field-wrap full-width">
-            <label class="field-label required" for="miniBio">Mini-biografia <span class="optional-tag">máx. 100 palavras — usada na apresentação no palco</span></label>
-            <textarea id="miniBio" name="miniBio" class="field-input field-textarea" placeholder="Focada na trajetória e grandes conquistas. Será usada pelo apresentador no palco..." rows="5" maxlength="900" required></textarea>
-            <span class="field-hint" id="bioCount">0 / 100 palavras</span>
+            <label class="field-label required" for="miniBio">Mini-biografia <span class="optional-tag">máx. 250 palavras — usada na apresentação no palco</span></label>
+            <textarea id="miniBio" name="miniBio" class="field-input field-textarea" placeholder="Focada na trajetória e grandes conquistas. Será usada pelo apresentador no palco..." rows="5" maxlength="2000" required></textarea>
+            <span class="field-hint" id="bioCount">0 / 250 palavras</span>
           </div>
           <div class="field-wrap full-width">
             <label class="field-label required" for="caseSucesso">Qual é o seu maior case de sucesso ou marco na carreira recente?</label>
@@ -272,29 +263,25 @@
         <div class="info-banner">
           <span class="info-icon">📌</span>
           <div>
-            <strong>Materiais necessários:</strong>
+            <strong>Instrução para Envio:</strong>
+            <p>Anexe todos os arquivos solicitados abaixo na nossa pasta compartilhada diretamente por este campo.</p>
             <ul class="info-list">
-              <li>Pelo menos 2 fotos profissionais em alta resolução (mín. 1920×1080px, fundo neutro)</li>
-              <li>Logotipo da empresa em .png com fundo transparente (se PJ)</li>
-              <li>Apresentação em .pptx ou .pdf (quando aplicável)</li>
+              <li><strong>Documento de Identidade:</strong> RG, CNH ou Passaporte (para facilitar o check-in no hotel)</li>
+              <li><strong>Fotos Oficiais:</strong> Pelo menos 2 fotos em alta resolução (fundo neutro)</li>
+              <li><strong>Vídeo de chamada (Opcional):</strong> Vídeo curto de 15 a 30s (formato 9:16 vertical) convidando o público.</li>
             </ul>
           </div>
         </div>
 
         <div class="fields-grid">
           <div class="field-wrap full-width">
-            <label class="field-label required" for="linkMateriais">Fotos Oficiais — Link para pasta (Google Drive, Dropbox, WeTransfer etc.)</label>
-            <input type="url" id="linkMateriais" name="linkMateriais" class="field-input" placeholder="https://drive.google.com/..." required />
-            <span class="field-hint">Envie pelo menos 2 fotos em alta resolução (mín. 1920×1080px, fundo neutro)</span>
+            <label class="field-label required" for="arquivosAnexos">Anexar Materiais e Documentos na nossa pasta do Drive</label>
+            <input type="file" id="arquivosAnexos" name="arquivosAnexos" class="field-input" accept=".pdf,image/*,video/*" multiple style="padding: 0.5rem;" required />
+            <span class="field-hint">Você pode selecionar múltiplos arquivos ao mesmo tempo (limite recomendado total: 30MB).</span>
           </div>
           <div class="field-wrap full-width">
-            <label class="field-label" for="obsPhotos">Observações sobre as fotos <span class="optional-tag">opcional</span></label>
-            <input type="text" id="obsPhotos" name="obsPhotos" class="field-input" placeholder="Ex: prefiro que usem a segunda foto, que é mais recente" />
-          </div>
-          <div class="field-wrap full-width">
-            <label class="field-label" for="linkVideo">Vídeo de chamada — Link do vídeo <span class="optional-tag">opcional</span></label>
-            <input type="url" id="linkVideo" name="linkVideo" class="field-input" placeholder="https://drive.google.com/..." />
-            <span class="field-hint">Vídeo curto de 15 a 30 segundos, gravado na vertical (formato 9:16, estilo Reels), convidando o público para o evento. Roteiro sugerido: <em>"Olá! Eu sou [Nome] e estarei na Cúpula CEO 2026. Venha descobrir [tema da palestra]. Nos vemos em Brasília!"</em></span>
+            <label class="field-label" for="obsPhotos">Observações sobre os materiais anexados <span class="optional-tag">opcional</span></label>
+            <input type="text" id="obsPhotos" name="obsPhotos" class="field-input" placeholder="Ex: prefiro que usem a segunda foto, que é mais recente..." />
           </div>
         </div>
       </div>

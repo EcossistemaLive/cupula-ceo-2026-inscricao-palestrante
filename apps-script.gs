@@ -42,19 +42,17 @@ const HEADERS = [
   'CNPJ',
   'Representante Legal',
   'CPF do Representante',
-  'Documento de Identidade (URL)',
   // Seção 3 — Conteúdo
   'Título da Palestra',
   'Resumo / Sinopse',
-  'Mini-biografia (100 palavras)',
+  'Mini-biografia (250 palavras)',
   'Case de Sucesso / Marco',
   'Contato no Evento',
   'Cidade de Origem',
   'Necessidades / Recursos Técnicos',
   // Seção 4 — Materiais
-  'Link Fotos Oficiais',
-  'Observações sobre Fotos',
-  'Link Vídeo de Chamada',
+  'Arquivos Anexados (Drive)',
+  'Observações sobre Materiais',
   // Aceites
   'Aceita Termo de Participação',
   'Aceita LGPD',
@@ -78,20 +76,25 @@ function doPost(e) {
     }
 
     let fileUrl = '';
-    if (data.fileBase64 && data.fileName && DRIVE_FOLDER_ID !== 'COLE_O_ID_DA_PASTA_AQUI') {
+    if (data.filesArray && DRIVE_FOLDER_ID !== 'COLE_O_ID_DA_PASTA_AQUI') {
       try {
         const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
-        const decoded = Utilities.base64Decode(data.fileBase64);
-        // Rename the file to include the speaker's name for easy identification
-        const finalName = (data.nomeAnuncio || 'Palestrante') + ' - ' + data.fileName;
-        const blob = Utilities.newBlob(decoded, data.mimeType, finalName);
-        const file = folder.createFile(blob);
-        fileUrl = file.getUrl();
+        const files = JSON.parse(data.filesArray);
+        let urls = [];
+        for (let i = 0; i < files.length; i++) {
+          const f = files[i];
+          const decoded = Utilities.base64Decode(f.data);
+          const finalName = (data.nomeAnuncio || 'Palestrante') + ' - ' + f.name;
+          const blob = Utilities.newBlob(decoded, f.type, finalName);
+          const file = folder.createFile(blob);
+          urls.push(file.getUrl());
+        }
+        fileUrl = urls.join('\n');
       } catch (e) {
-        console.error('Erro ao salvar arquivo no Drive:', e);
+        console.error('Erro ao salvar arquivos no Drive:', e);
         fileUrl = 'Erro ao salvar no Drive: ' + e.message;
       }
-    } else if (data.fileBase64 && DRIVE_FOLDER_ID === 'COLE_O_ID_DA_PASTA_AQUI') {
+    } else if (data.filesArray && DRIVE_FOLDER_ID === 'COLE_O_ID_DA_PASTA_AQUI') {
       fileUrl = 'Faltou configurar o ID da pasta no script.';
     }
 
@@ -119,7 +122,6 @@ function doPost(e) {
       data.cnpj                 || '',
       data.representante        || '',
       data.cpfRepresentante     || '',
-      fileUrl,
       // Seção 3
       data.temaPainel           || '',
       data.sinopse              || '',
@@ -129,9 +131,8 @@ function doPost(e) {
       data.cidadeOrigem         || '',
       data.necessidades         || '',
       // Seção 4
-      data.linkMateriais        || '',
+      fileUrl,
       data.obsPhotos            || '',
-      data.linkVideo            || '',
       // Aceites
       data.aceitaTermos         || '',
       data.aceitaLGPD           || '',

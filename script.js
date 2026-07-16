@@ -117,7 +117,7 @@ function maskPhone(input) {
   });
 }
 
-// ===== BIO COUNTER (100 palavras) =====
+// ===== BIO COUNTER (250 palavras) =====
 function setupBioCounter() {
   const bio = document.getElementById('miniBio');
   const counter = document.getElementById('bioCount');
@@ -125,8 +125,8 @@ function setupBioCounter() {
   bio.addEventListener('input', () => {
     const words = bio.value.trim().split(/\s+/).filter(w => w.length > 0);
     const count = words.length;
-    counter.textContent = `${count} / 100 palavras`;
-    counter.style.color = count > 100 ? '#e74c3c' : 'var(--text-muted)';
+    counter.textContent = `${count} / 250 palavras`;
+    counter.style.color = count > 250 ? '#e74c3c' : 'var(--text-muted)';
   });
 }
 
@@ -170,9 +170,7 @@ function collectData() {
     necessidades:      document.getElementById('necessidades').value,
 
     // Seção 4 — Materiais
-    linkMateriais:     document.getElementById('linkMateriais').value,
-    obsPhotos:         document.getElementById('obsPhotos').value,
-    linkVideo:         document.getElementById('linkVideo').value,
+    obsPhotos:         document.getElementById('obsPhotos')?.value || '',
 
     // Aceites
     aceitaTermos:      document.getElementById('aceitaTermos').checked ? 'Sim' : 'Não',
@@ -270,17 +268,23 @@ async function handleSubmit(e) {
     formData.append(key, data[key]);
   }
 
-  // Handle file
-  const fileInput = document.getElementById('documentoId');
+  // Handle multiple files
+  const fileInput = document.getElementById('arquivosAnexos');
   if (fileInput && fileInput.files.length > 0) {
-    const file = fileInput.files[0];
     try {
-      const base64 = await readFileAsBase64(file);
-      formData.append('fileName', file.name);
-      formData.append('mimeType', file.type);
-      formData.append('fileBase64', base64);
+      const filesArray = [];
+      for (let i = 0; i < fileInput.files.length; i++) {
+        const file = fileInput.files[i];
+        const base64 = await readFileAsBase64(file);
+        filesArray.push({
+          name: file.name,
+          type: file.type,
+          data: base64
+        });
+      }
+      formData.append('filesArray', JSON.stringify(filesArray));
     } catch (err) {
-      console.error('Erro ao ler arquivo', err);
+      console.error('Erro ao ler arquivos', err);
     }
   }
 
