@@ -53,6 +53,10 @@ const HEADERS = [
   // Seção 4 — Materiais
   'Arquivos Anexados (Drive)',
   'Observações sobre Materiais',
+  // Logística
+  'Hospedagem',
+  'Traslado Local',
+  'Transporte Aéreo',
   // Aceites
   'Aceita Termo de Participação',
   'Aceita LGPD',
@@ -145,6 +149,10 @@ function doPost(e) {
       // Seção 4
       fileUrl,
       data.obsPhotos            || '',
+      // Logística
+      data.hospedagem           || '',
+      data.traslado             || '',
+      data.transporteAereo      || '',
       // Aceites
       data.aceitaTermos         || '',
       data.aceitaLGPD           || '',
