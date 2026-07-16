@@ -291,14 +291,9 @@ async function handleSubmit(e) {
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(data),
     });
-    
-    // Hide form, hero, and progress bar to show success screen clearly
-    document.getElementById('speakerForm').classList.add('hidden');
-    document.querySelector('.hero').classList.add('hidden');
-    document.querySelector('.progress-wrapper').classList.add('hidden');
-    
-    document.getElementById('successScreen').classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Redireciona para página de obrigado
+    window.location.href = 'obrigado.html';
   } catch (err) {
     console.error('Erro ao enviar:', err);
     btn.disabled = false;

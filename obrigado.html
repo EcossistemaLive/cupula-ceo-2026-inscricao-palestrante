@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obrigado! — Cúpula CEO 2026 | ViDi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #cea736;
+      --black: #0a0a0a;
+      --dark: #111111;
+      --text: #f0ead8;
+      --text-sub: #b5a880;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    html, body {
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      background: var(--black);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(206,167,54,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 90% 90%, rgba(206,167,54,0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(206,167,54,0.12);
+      padding: 0.9rem 2rem;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .header-logo img { height: 40px; width: auto; }
+    .header-tag {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .tag-badge {
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+    }
+    .tag-date {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+
+    /* MAIN CONTENT */
+    main {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: calc(100vh - 80px - 200px);
+      padding: 5rem 2rem 4rem;
+    }
+
+    .check-icon {
+      width: 90px;
+      height: 90px;
+      background: rgba(206,167,54,0.12);
+      border: 2px solid rgba(206,167,54,0.35);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 2.5rem;
+      box-shadow: 0 0 40px rgba(206,167,54,0.15);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 span {
+      font-style: normal;
+      color: var(--text);
+    }
+
+    p.subtitle {
+      font-size: 1.1rem;
+      color: var(--text-sub);
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .divider {
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 3rem;
+    }
+
+    .info-cards {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .info-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(206,167,54,0.18);
+      border-radius: 14px;
+      padding: 1.25rem 1.75rem;
+      min-width: 200px;
+    }
+    .info-card .icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+    .info-card .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+    .info-card .value {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-sub);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--gold); }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: #111;
+      border-top: 1px solid rgba(206,167,54,0.10);
+      padding: 2rem;
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.78rem;
+      color: rgba(181,168,128,0.5);
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .info-cards { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-logo">
+        <img src="vidi-logo.png" alt="ViDi CEO Logo" />
+      </div>
+      <div class="header-tag">
+        <span class="tag-badge">Cúpula CEO 2026</span>
+        <span class="tag-date">🍷 Cúpula Dinner: 16/Set · 🎤 Evento: 17/Set · Royal Tulip · Brasília – DF</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="check-icon">✅</div>
+
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      Formulário recebido com sucesso
+    </div>
+
+    <h1>Obrigado,<br /><span>palestrante!</span></h1>
+
+    <p class="subtitle">
+      Seus dados foram registrados pela equipe ViDi. Em breve você receberá o Termo de Participação e Autorização de Uso de Imagem para assinatura digital.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="icon">🍷</div>
+        <div class="label">Cúpula Dinner</div>
+        <div class="value">Noite de 16 de Setembro</div>
+      </div>
+      <div class="info-card">
+        <div class="icon">🎤</div>
+        <div class="label">Evento Principal</div>
+        <div class="value">17 de Setembro (dia todo)</div>
+      </div>
+      <div class="info-card">
+        <div class="icon">📍</div>
+        <div class="label">Local</div>
+        <div class="value">Hotel Royal Tulip · Brasília – DF</div>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <a href="mailto:contato@vidiceo.com.br" class="contact-link">
+        📧 contato@vidiceo.com.br
+      </a>
+      <a href="https://wa.me/5562994604902" target="_blank" rel="noopener" class="contact-link">
+        📱 (62) 99460-4902
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 ViDi CEO · Todos os direitos reservados · Dados protegidos pela LGPD (Lei 13.709/2018)</p>
+  </footer>
+
+</body>
+</html>
