@@ -263,10 +263,6 @@ async function handleSubmit(e) {
   btnLoading.classList.remove('hidden');
 
   const data = collectData();
-  const formData = new URLSearchParams();
-  for (const key in data) {
-    formData.append(key, data[key]);
-  }
 
   // Handle multiple files
   const fileInput = document.getElementById('arquivosAnexos');
@@ -282,7 +278,7 @@ async function handleSubmit(e) {
           data: base64
         });
       }
-      formData.append('filesArray', JSON.stringify(filesArray));
+      data.filesArray = JSON.stringify(filesArray);
     } catch (err) {
       console.error('Erro ao ler arquivos', err);
     }
@@ -292,7 +288,8 @@ async function handleSubmit(e) {
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
-      body: formData,
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(data),
     });
     document.getElementById('speakerForm').classList.add('hidden');
     document.getElementById('successScreen').classList.remove('hidden');
