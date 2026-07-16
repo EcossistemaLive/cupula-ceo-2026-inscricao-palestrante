@@ -569,30 +569,42 @@ body::before {
 
 /* ========= SUCCESS SCREEN ========= */
 .success-screen {
-  text-align: center; padding: 4rem 2rem;
+  text-align: center;
+  padding: 6rem 2rem;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.success-icon { font-size: 3.5rem; margin-bottom: 1.5rem; }
+.success-icon { font-size: 4rem; margin-bottom: 1.5rem; }
 
 .success-title {
   font-family: var(--font-serif);
-  font-size: 2.25rem; font-weight: 600; font-style: italic;
-  background: var(--grad-gold-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
 }
 
 .success-msg {
-  font-size: 1.05rem; color: var(--text-secondary);
-  max-width: 520px; margin: 0 auto 2rem; line-height: 1.75;
+  font-size: 1.1rem;
+  color: #c8b97a;
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
 }
 
 .success-info {
-  display: flex; justify-content: center;
-  gap: 2rem; flex-wrap: wrap;
-  font-size: 0.92rem; color: var(--gold);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+  color: var(--gold);
 }
 
 /* ========= FOOTER ========= */
