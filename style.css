@@ -351,6 +351,11 @@ body::before {
 
 .field-input::placeholder { color: var(--text-muted); }
 
+select.field-input option { 
+  color: #000; 
+  background-color: #fff; 
+}
+
 .field-input:focus {
   border-color: var(--gold);
   background: rgba(206,167,54,0.05);
