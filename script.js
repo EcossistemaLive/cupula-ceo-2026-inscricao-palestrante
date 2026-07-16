@@ -4,7 +4,7 @@
    ======================================== */
 
 // ===== CONFIG =====
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSUaWnkqcBW5h7X2bCfZV124eEMs0CIrzovifELR8jzRtx0LTu85tOPM7ERnOOrC7aEw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyK4vfn_yrK94nNYiL3anCMcH_tp3nj-17eKJKq9NMg4IXlD6dOl9IUaOgGBjCSvXBgoQ/exec';
 
 // ===== PARTICLES =====
 function createParticles() {
