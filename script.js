@@ -230,6 +230,20 @@ function validateForm() {
   return valid;
 }
 
+// ===== READ FILE AS BASE64 =====
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      const base64 = result.split(',')[1];
+      resolve(base64);
+    };
+    reader.onerror = error => reject(error);
+    reader.readAsDataURL(file);
+  });
+}
+
 // ===== SUBMIT =====
 async function handleSubmit(e) {
   e.preventDefault();
@@ -254,6 +268,20 @@ async function handleSubmit(e) {
   const formData = new URLSearchParams();
   for (const key in data) {
     formData.append(key, data[key]);
+  }
+
+  // Handle file
+  const fileInput = document.getElementById('documentoId');
+  if (fileInput && fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+    try {
+      const base64 = await readFileAsBase64(file);
+      formData.append('fileName', file.name);
+      formData.append('mimeType', file.type);
+      formData.append('fileBase64', base64);
+    } catch (err) {
+      console.error('Erro ao ler arquivo', err);
+    }
   }
 
   try {

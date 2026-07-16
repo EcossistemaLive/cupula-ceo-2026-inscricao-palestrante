@@ -15,9 +15,10 @@
  * ========================================================
  */
 
-const SPREADSHEET_ID = '1nmsBojofevsIFhS0OienuAZDo89IpjU3MqzW94K9uHM';
-const SHEET_NAME     = 'Respostas';
-const NOTIFY_EMAIL   = 'contato@vidiceo.com.br';
+const SPREADSHEET_ID   = '1nmsBojofevsIFhS0OienuAZDo89IpjU3MqzW94K9uHM';
+const DRIVE_FOLDER_ID  = 'COLE_O_ID_DA_PASTA_AQUI'; // <-- ATENÇÃO: COLOQUE O ID DA PASTA AQUI
+const SHEET_NAME       = 'Respostas';
+const NOTIFY_EMAIL     = 'contato@vidiceo.com.br';
 
 const HEADERS = [
   'Timestamp',
@@ -41,6 +42,7 @@ const HEADERS = [
   'CNPJ',
   'Representante Legal',
   'CPF do Representante',
+  'Documento de Identidade (URL)',
   // Seção 3 — Conteúdo
   'Título da Palestra',
   'Resumo / Sinopse',
@@ -74,6 +76,25 @@ function doPost(e) {
       const raw = e.postData ? e.postData.contents : '{}';
       try { data = JSON.parse(raw); } catch (e) { data = {}; }
     }
+
+    let fileUrl = '';
+    if (data.fileBase64 && data.fileName && DRIVE_FOLDER_ID !== 'COLE_O_ID_DA_PASTA_AQUI') {
+      try {
+        const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
+        const decoded = Utilities.base64Decode(data.fileBase64);
+        // Rename the file to include the speaker's name for easy identification
+        const finalName = (data.nomeAnuncio || 'Palestrante') + ' - ' + data.fileName;
+        const blob = Utilities.newBlob(decoded, data.mimeType, finalName);
+        const file = folder.createFile(blob);
+        fileUrl = file.getUrl();
+      } catch (e) {
+        console.error('Erro ao salvar arquivo no Drive:', e);
+        fileUrl = 'Erro ao salvar no Drive: ' + e.message;
+      }
+    } else if (data.fileBase64 && DRIVE_FOLDER_ID === 'COLE_O_ID_DA_PASTA_AQUI') {
+      fileUrl = 'Faltou configurar o ID da pasta no script.';
+    }
+
     const sheet = getOrCreateSheet();
 
     const row = [
@@ -98,6 +119,7 @@ function doPost(e) {
       data.cnpj                 || '',
       data.representante        || '',
       data.cpfRepresentante     || '',
+      fileUrl,
       // Seção 3
       data.temaPainel           || '',
       data.sinopse              || '',
